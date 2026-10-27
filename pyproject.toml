@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "socdet"
+version = "0.1.0"
+description = "Detection-as-code for SOC analysts: tested Sigma rules, Splunk SPL and Sentinel KQL conversion, log hunting, ATT&CK coverage and phishing triage."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Vaishnavi U" }]
+dependencies = ["pyyaml>=6.0.3"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.17.3"]
+
+[project.scripts]
+socdet = "socdet.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "BLE"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"scripts/*" = ["S311", "E501"]  # random is fine for fake sample logs; event literals read better unwrapped
