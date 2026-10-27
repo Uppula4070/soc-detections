@@ -1,0 +1,9 @@
+scenarios:
+  - name: new account
+    expect: 1
+    events:
+      - {EventID: 4720, TargetUserName: svc_update, SubjectUserName: admin}
+  - name: password change is not account creation
+    expect: 0
+    events:
+      - {EventID: 4724, TargetUserName: alice}

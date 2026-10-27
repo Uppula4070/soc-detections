@@ -1,0 +1,24 @@
+title: AWS CloudTrail Logging Stopped or Trail Deleted
+id: 4b8e6f23-1c7d-4a95-9f02-3d4e5f6a7b2a
+status: stable
+description: |
+  CloudTrail logging was stopped or a trail was deleted. Attackers do this to blind defenders before
+  acting in the account.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.defense_evasion
+  - attack.t1562.008
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: 'cloudtrail.amazonaws.com'
+    eventName:
+      - 'StopLogging'
+      - 'DeleteTrail'
+  condition: selection
+falsepositives:
+  - Planned trail migration; confirm with a change ticket
+level: high

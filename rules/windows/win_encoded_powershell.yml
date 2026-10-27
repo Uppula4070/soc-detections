@@ -1,0 +1,32 @@
+title: PowerShell Started With an Encoded Command
+id: c7e21b9d-4a6f-4f83-a1d2-3e5c9b0d8a63
+status: stable
+description: |
+  PowerShell launched with -EncodedCommand (or a short form such as -enc). Base64 encoding hides the
+  real command from simple command-line review and is common in malware loaders. Needs process
+  creation auditing (event 4688) with command line logging turned on.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.defense_evasion
+  - attack.t1027
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_process:
+    EventID: 4688
+    NewProcessName|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_flag:
+    CommandLine|contains:
+      - ' -enc'
+      - ' -ec '
+      - ' -encodedcommand'
+  condition: selection_process and selection_flag
+falsepositives:
+  - Some management and deployment tools encode their own scripts; baseline and exclude by parent process
+level: high

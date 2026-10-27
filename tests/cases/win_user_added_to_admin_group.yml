@@ -1,0 +1,13 @@
+scenarios:
+  - name: added to local Administrators
+    expect: 1
+    events:
+      - {EventID: 4732, TargetUserName: Administrators, MemberSid: 'S-1-5-21-1000-1000-1000-1105', SubjectUserName: helpdesk1}
+  - name: added to Domain Admins
+    expect: 1
+    events:
+      - {EventID: 4728, TargetUserName: Domain Admins, MemberSid: 'S-1-5-21-1000-1000-1000-1106'}
+  - name: added to an ordinary group
+    expect: 0
+    events:
+      - {EventID: 4732, TargetUserName: Remote Desktop Users, MemberSid: 'S-1-5-21-1000-1000-1000-1107'}

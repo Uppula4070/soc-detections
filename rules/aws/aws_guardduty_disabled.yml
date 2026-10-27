@@ -1,0 +1,23 @@
+title: AWS GuardDuty Detector Deleted or Monitoring Stopped
+id: e6f1a2b3-4c5d-4e7f-9a0b-1c2d3e4f5a6c
+status: stable
+description: |
+  A GuardDuty detector was deleted or member monitoring was stopped, switching off threat detection.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.defense_evasion
+  - attack.t1562.001
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: 'guardduty.amazonaws.com'
+    eventName:
+      - 'DeleteDetector'
+      - 'StopMonitoringMembers'
+  condition: selection
+falsepositives:
+  - Decommissioning an unused region; confirm with a change ticket
+level: high

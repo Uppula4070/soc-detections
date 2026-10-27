@@ -1,0 +1,14 @@
+scenarios:
+  - name: root signs in and calls an API
+    expect: 2
+    events:
+      - {eventSource: signin.amazonaws.com, eventName: ConsoleLogin, eventType: AwsConsoleSignIn, userIdentity: {type: Root, arn: 'arn:aws:iam::111122223333:root'}}
+      - {eventSource: iam.amazonaws.com, eventName: CreateAccessKey, eventType: AwsApiCall, userIdentity: {type: Root, arn: 'arn:aws:iam::111122223333:root'}}
+  - name: AWS service events attributed to root are excluded
+    expect: 0
+    events:
+      - {eventSource: health.amazonaws.com, eventName: AWSHealthEvent, eventType: AwsServiceEvent, userIdentity: {type: Root}}
+  - name: IAM user activity
+    expect: 0
+    events:
+      - {eventSource: s3.amazonaws.com, eventName: ListBuckets, eventType: AwsApiCall, userIdentity: {type: IAMUser, userName: alice}}

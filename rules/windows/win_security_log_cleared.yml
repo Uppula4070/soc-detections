@@ -1,0 +1,21 @@
+title: Windows Security Event Log Cleared
+id: 6d4b9c02-3e7a-4f15-8c6d-9a0b1e2f3c05
+status: stable
+description: |
+  The Security log was cleared (event 1102). Attackers clear logs to remove evidence; legitimate
+  clearing is rare on servers that forward logs to a SIEM.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.defense_evasion
+  - attack.t1070.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1102
+  condition: selection
+falsepositives:
+  - Planned maintenance on a test machine
+level: high

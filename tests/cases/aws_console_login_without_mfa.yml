@@ -1,0 +1,13 @@
+scenarios:
+  - name: successful login without MFA
+    expect: 1
+    events:
+      - {eventName: ConsoleLogin, userIdentity: {type: IAMUser, userName: bob}, additionalEventData: {MFAUsed: 'No'}, responseElements: {ConsoleLogin: Success}}
+  - name: login with MFA
+    expect: 0
+    events:
+      - {eventName: ConsoleLogin, userIdentity: {type: IAMUser, userName: bob}, additionalEventData: {MFAUsed: 'Yes'}, responseElements: {ConsoleLogin: Success}}
+  - name: failed login without MFA is not a successful sign-in
+    expect: 0
+    events:
+      - {eventName: ConsoleLogin, userIdentity: {type: IAMUser, userName: bob}, additionalEventData: {MFAUsed: 'No'}, responseElements: {ConsoleLogin: Failure}}

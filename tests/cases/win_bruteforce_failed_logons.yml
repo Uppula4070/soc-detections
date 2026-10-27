@@ -1,0 +1,20 @@
+scenarios:
+  - name: 12 failed logons from one IP in 2 minutes
+    expect: 1
+    every_seconds: 10
+    events:
+      - {EventID: 4625, IpAddress: 203.0.113.7, TargetUserName: alice, LogonType: 10, _repeat: 12}
+  - name: 12 failures spread over an hour stay quiet
+    expect: 0
+    every_seconds: 300
+    events:
+      - {EventID: 4625, IpAddress: 203.0.113.7, TargetUserName: alice, _repeat: 12}
+  - name: 6 failures from each of two IPs are not combined
+    expect: 0
+    events:
+      - {EventID: 4625, IpAddress: 198.51.100.1, TargetUserName: bob, _repeat: 6}
+      - {EventID: 4625, IpAddress: 198.51.100.2, TargetUserName: bob, _repeat: 6}
+  - name: successful logons are ignored
+    expect: 0
+    events:
+      - {EventID: 4624, IpAddress: 203.0.113.7, TargetUserName: alice, _repeat: 20}

@@ -1,0 +1,22 @@
+title: AWS Console Login Without MFA
+id: 7e4c2b16-8d9a-4f53-a2e1-6b7c8d9e0f19
+status: stable
+description: |
+  A successful AWS console sign-in where MFA was not used. A stolen password alone is enough to get in.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.initial_access
+  - attack.t1078.004
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventName: 'ConsoleLogin'
+    additionalEventData.MFAUsed: 'No'
+    responseElements.ConsoleLogin: 'Success'
+  condition: selection
+falsepositives:
+  - Federated SSO logins where MFA is enforced by the identity provider rather than AWS
+level: medium

@@ -1,0 +1,29 @@
+title: Account Added to a Privileged Group
+id: 1f7c3a58-9b2d-4e64-a0f3-5d8e6c7b1a26
+status: stable
+description: |
+  A member was added to Administrators, Domain Admins or Enterprise Admins (events 4728, 4732, 4756).
+  Attackers add accounts they control to admin groups to keep elevated access.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1098
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 4728
+      - 4732
+      - 4756
+    TargetUserName:
+      - 'Administrators'
+      - 'Domain Admins'
+      - 'Enterprise Admins'
+  condition: selection
+falsepositives:
+  - Approved admin onboarding; correlate with a change ticket
+level: high

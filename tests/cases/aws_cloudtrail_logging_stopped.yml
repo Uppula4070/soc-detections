@@ -1,0 +1,9 @@
+scenarios:
+  - name: StopLogging
+    expect: 1
+    events:
+      - {eventSource: cloudtrail.amazonaws.com, eventName: StopLogging, requestParameters: {name: org-trail}}
+  - name: reading trail status is fine
+    expect: 0
+    events:
+      - {eventSource: cloudtrail.amazonaws.com, eventName: GetTrailStatus, requestParameters: {name: org-trail}}

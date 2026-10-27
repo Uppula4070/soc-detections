@@ -1,0 +1,27 @@
+title: AWS AdministratorAccess Policy Attached
+id: 0d5a7b39-2e8c-4f61-8b3d-4c5e6f7a8b9b
+status: stable
+description: |
+  The AdministratorAccess managed policy was attached to a user, role or group, granting full control
+  of the account.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1098.003
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: 'iam.amazonaws.com'
+    eventName:
+      - 'AttachUserPolicy'
+      - 'AttachRolePolicy'
+      - 'AttachGroupPolicy'
+    requestParameters.policyArn|endswith: '/AdministratorAccess'
+  condition: selection
+falsepositives:
+  - Infrastructure-as-code pipelines creating admin roles; exclude the pipeline role after review
+level: high

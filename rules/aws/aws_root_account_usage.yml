@@ -1,0 +1,24 @@
+title: AWS Root Account Used
+id: 3a9d1e7c-5f2b-4c86-b4a0-8e7d6c5b4a38
+status: stable
+description: |
+  An API call or console action made with the root user. AWS recommends locking the root user away;
+  any use outside break-glass procedures should be investigated.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.privilege_escalation
+  - attack.initial_access
+  - attack.t1078.004
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    userIdentity.type: 'Root'
+  filter_aws_service:
+    eventType: 'AwsServiceEvent'
+  condition: selection and not filter_aws_service
+falsepositives:
+  - Documented break-glass use, or the few tasks that require root (such as closing the account)
+level: high

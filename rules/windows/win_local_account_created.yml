@@ -1,0 +1,21 @@
+title: User Account Created
+id: 8c2e5f91-7a4d-4b38-9e16-2c3f4a5b6d07
+status: stable
+description: |
+  A new user account was created (event 4720). Worth reviewing on servers, where new accounts are
+  unusual outside of an approved change.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.persistence
+  - attack.t1136.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4720
+  condition: selection
+falsepositives:
+  - Help desk creating accounts for new starters
+level: medium

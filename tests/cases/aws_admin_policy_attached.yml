@@ -1,0 +1,9 @@
+scenarios:
+  - name: AdministratorAccess attached to a user
+    expect: 1
+    events:
+      - {eventSource: iam.amazonaws.com, eventName: AttachUserPolicy, requestParameters: {userName: temp-user, policyArn: 'arn:aws:iam::aws:policy/AdministratorAccess'}}
+  - name: read-only policy attached
+    expect: 0
+    events:
+      - {eventSource: iam.amazonaws.com, eventName: AttachUserPolicy, requestParameters: {userName: auditor, policyArn: 'arn:aws:iam::aws:policy/ReadOnlyAccess'}}

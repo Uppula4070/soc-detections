@@ -1,0 +1,9 @@
+scenarios:
+  - name: security log cleared
+    expect: 1
+    events:
+      - {EventID: 1102, SubjectUserName: svc_backup}
+  - name: other events are ignored
+    expect: 0
+    events:
+      - {EventID: 4624, TargetUserName: alice}

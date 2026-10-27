@@ -1,0 +1,31 @@
+title: Volume Shadow Copies Deleted
+id: 2e8f4a17-6c3b-4d90-b5e8-7f1a2c4d9e84
+status: stable
+description: |
+  vssadmin or wmic used to delete volume shadow copies. Ransomware does this right before
+  encrypting files so the victim cannot restore from local snapshots.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.impact
+  - attack.t1490
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_vssadmin:
+    EventID: 4688
+    NewProcessName|endswith: '\vssadmin.exe'
+    CommandLine|contains|all:
+      - 'delete'
+      - 'shadows'
+  selection_wmic:
+    EventID: 4688
+    NewProcessName|endswith: '\wmic.exe'
+    CommandLine|contains|all:
+      - 'shadowcopy'
+      - 'delete'
+  condition: 1 of selection_*
+falsepositives:
+  - Rare. Some backup software prunes old snapshots; confirm the parent process
+level: high

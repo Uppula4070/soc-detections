@@ -1,0 +1,9 @@
+scenarios:
+  - name: detector deleted
+    expect: 1
+    events:
+      - {eventSource: guardduty.amazonaws.com, eventName: DeleteDetector, awsRegion: us-east-1}
+  - name: listing findings is fine
+    expect: 0
+    events:
+      - {eventSource: guardduty.amazonaws.com, eventName: ListFindings}

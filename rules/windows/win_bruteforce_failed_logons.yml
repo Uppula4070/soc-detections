@@ -1,0 +1,23 @@
+title: Brute Force - Many Failed Logons From One Source
+id: 5b0f1c34-8e2a-4d55-9c71-0a6e2f4b7d11
+status: stable
+description: |
+  More than 10 failed logons (event 4625) from the same source IP within 5 minutes. Typical of
+  password guessing against RDP, SMB or other network logons.
+author: Vaishnavi U
+date: 2026-10-27
+tags:
+  - attack.credential_access
+  - attack.t1110.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+  timeframe: 5m
+  condition: selection | count() by IpAddress > 10
+falsepositives:
+  - A service account with an expired password retrying in a loop
+  - Vulnerability scanners running authenticated checks
+level: medium

@@ -1,0 +1,17 @@
+scenarios:
+  - name: powershell -enc
+    expect: 1
+    events:
+      - {EventID: 4688, NewProcessName: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe', CommandLine: 'powershell.exe -NoProfile -enc SQBFAFgA'}
+  - name: pwsh -EncodedCommand in mixed case
+    expect: 1
+    events:
+      - {EventID: 4688, NewProcessName: 'C:\Program Files\PowerShell\7\pwsh.exe', CommandLine: 'pwsh -EncodedCommand SQBFAFgA'}
+  - name: normal script run
+    expect: 0
+    events:
+      - {EventID: 4688, NewProcessName: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe', CommandLine: 'powershell.exe -File C:\scripts\backup.ps1'}
+  - name: another program with -enc in its arguments
+    expect: 0
+    events:
+      - {EventID: 4688, NewProcessName: 'C:\Tools\ffmpeg.exe', CommandLine: 'ffmpeg -i in.mp4 -enc h264 out.mp4'}
