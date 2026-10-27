@@ -1,0 +1,11 @@
+Return-Path: <notify@docs-share.example.org>
+Authentication-Results: mx.samplelending.example; spf=pass smtp.mailfrom=docs-share.example.org; dkim=pass header.d=docs-share.example.org; dmarc=pass header.from=docs-share.example.org
+From: "Document Share" <notify@docs-share.example.org>
+To: lchen@samplelending.example
+Subject: A document has been shared with you
+Date: Mon, 26 Oct 2026 12:02:00 +0000
+Message-ID: <s-55@docs-share.example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Someone shared "Q4 bonus plan.xlsx" with you. Please verify your account to open it: https://bit.ly/3xYzQ7a

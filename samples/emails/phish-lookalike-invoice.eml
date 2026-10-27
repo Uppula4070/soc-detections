@@ -1,0 +1,42 @@
+Return-Path: <bounce@mailer-7731.example.net>
+Authentication-Results: mx.samplelending.example; spf=fail smtp.mailfrom=mailer-7731.example.net; dkim=none; dmarc=fail header.from=sarnplelending.example
+From: "SampleLending Accounts Payable" <ap@sarnplelending.example>
+Reply-To: payments.team@freemail.example
+To: finance@samplelending.example
+Subject: URGENT: Overdue invoice - wire transfer required within 24 hours
+Date: Mon, 26 Oct 2026 08:14:00 +0000
+Message-ID: <a1b2c3@mailer-7731.example.net>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY1"
+
+--BOUNDARY1
+Content-Type: multipart/alternative; boundary="BOUNDARY2"
+
+--BOUNDARY2
+Content-Type: text/plain; charset="utf-8"
+
+Hello,
+
+Invoice 88213 is overdue. Please complete the wire transfer immediately to avoid your account being suspended.
+Review the invoice here: https://samplelending.example.invoice-portal.example.net/view?id=88213
+
+Accounts Payable
+
+--BOUNDARY2
+Content-Type: text/html; charset="utf-8"
+
+<p>Hello,</p>
+<p>Invoice 88213 is overdue. Please complete the wire transfer immediately to avoid your account being suspended.</p>
+<p>Review the invoice: <a href="http://198.51.100.23/inv/88213">https://portal.samplelending.example/invoices/88213</a></p>
+<p>Accounts Payable</p>
+
+--BOUNDARY2--
+
+--BOUNDARY1
+Content-Type: text/html; name="Invoice_88213.pdf.html"
+Content-Disposition: attachment; filename="Invoice_88213.pdf.html"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+U2FtcGxlIGF0dGFjaG1lbnQgLSBub3QgcmVhbC48L2JvZHk+PC9odG1sPg==
+
+--BOUNDARY1--

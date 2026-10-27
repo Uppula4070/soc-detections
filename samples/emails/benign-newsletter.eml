@@ -1,0 +1,22 @@
+Return-Path: <news@samplelending.example>
+Authentication-Results: mx.samplelending.example; spf=pass smtp.mailfrom=samplelending.example; dkim=pass header.d=samplelending.example; dmarc=pass header.from=samplelending.example
+From: "SampleLending Communications" <news@samplelending.example>
+To: staff@samplelending.example
+Subject: October staff newsletter
+Date: Mon, 26 Oct 2026 07:30:00 +0000
+Message-ID: <n-2026-10@samplelending.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="B"
+
+--B
+Content-Type: text/plain; charset="utf-8"
+
+Hi everyone, this month's newsletter is on the intranet: https://intranet.samplelending.example/news/2026-10
+
+--B
+Content-Type: text/html; charset="utf-8"
+
+<p>Hi everyone, this month's newsletter is on the
+<a href="https://intranet.samplelending.example/news/2026-10">intranet.samplelending.example</a>.</p>
+
+--B--
