@@ -39,6 +39,8 @@ $ socdet hunt --logs windows=samples/windows-security.jsonl --logs aws=samples/c
 11:10  high    AWS GuardDuty Detector Deleted or Monitoring Stopped
 ```
 
+![Hunt timeline: ten alerts from password spray to GuardDuty being disabled](docs/hunt-preview.png)
+
 Every step is caught, and none of the look-alike activity raises an alert. The brute-force rule stays quiet too: nine attempts against nine accounts is a *spray*, which is a different detection with a different response.
 
 ## A rule and its tests
