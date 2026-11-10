@@ -13,7 +13,7 @@ authors = [{ name = "Vaishnavi U" }]
 dependencies = ["pyyaml>=6.0.3"]
 
 [project.optional-dependencies]
-dev = ["pytest==9.1.1", "ruff==0.17.3"]
+dev = ["pytest==9.2.0", "ruff==0.17.3"]
 
 [project.scripts]
 socdet = "socdet.cli:main"
